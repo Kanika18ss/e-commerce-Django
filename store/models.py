@@ -130,6 +130,8 @@ class OrderItem(models.Model):
     cancellation_reason = models.CharField(max_length=255, null=True, blank=True)
     cancellation_date = models.DateTimeField(auto_now_add=True)
     product = models.ForeignKey(Product, on_delete=models.RESTRICT)
+    quantity = models.IntegerField(default=1)  # Add this line
+    return_requested = models.BooleanField(default=False)
 
     def __str__(self):
         return f'OrderItem {self.order_item_id} of Order {self.order.order_id}'

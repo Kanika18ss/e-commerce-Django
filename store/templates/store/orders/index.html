@@ -25,6 +25,7 @@
                                 <th>Order Status</th>
                                 <th>Action</th>
                                 <th>Return/Exchange</th>
+                                <th>Cancel Order</th> <!-- New column for Cancel Order -->
                             </tr>
                         </thead>
                         <tbody>
@@ -34,14 +35,21 @@
                                 <td>{{ item.order_date }}</td>
                                 <td>{{ item.total_amount }}</td>
                                 <td>{{ item.status }}</td>
-                                <td><a href="{% url "orderview" item.order_id %}" class="btn btn-primary">View</a></td>
-                                <td><a href="{% url "return_order" item.order_id %}" class="btn btn-primary">Return</a></td>
+                                <td><a href="{% url 'orderview' item.order_id %}" class="btn btn-primary">View</a></td>
+                                <td><a href="{% url 'return_order' item.order_id %}" class="btn btn-primary">Return</a></td>
+                                <td>
+                                    {% if item.status != 'Canceled' %} 
+                                        <a href="{% url 'cancel_order' item.order_id %}" class="btn btn-danger">Cancel</a>
+                                    {% else %}
+                                        Order Canceled
+                                    {% endif %}
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
-                     
                     </table>
                 </div>
+                
             </div>
         </div>
     </div>

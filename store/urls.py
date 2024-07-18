@@ -32,5 +32,6 @@ urlpatterns = [
     path('request-return/<int:item_id>/', order.request_return, name='request_return'),
     
     path('get-address-data/', checkout.get_address_data, name='get_address_data'),
+    path('cancel_order/<int:order_id>/', order.cancel_order, name='cancel_order'),
 ]
 
